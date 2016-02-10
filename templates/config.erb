@@ -1,0 +1,73 @@
+# This file is being handled by puppet
+#
+# Nodes
+<% @node.each do |host| -%>
+  node <%= host %>
+<% end -%>
+
+<% if @autofailback -%>
+  auto_failback <%= @autofailback %>
+<% end -%>
+<% if @autojoin -%>
+  autojoin <%= @autojoin %>
+<% end -%>
+
+<% if has_variable?(@bcast_devices) -%>
+# broadcast devices configuration
+  bcast <%= Array(@bcast_devices).join(" ")  %>
+<% end -%>
+<% if @ucast -%>
+# ucast configuration
+  ucast <%= @ucast['dev'] %> <%= @ucast['peer_ip'] %>
+<% end -%>
+<% if  defined?(@mcast) -%>
+# mcast configuration
+  mcast <%= @mcast['dev'] -%> <%=@mcast['peer_ip']-%> <%=@mcast['udp_port'] -%> <%= @mcast['ttl']%> 0
+<% end -%>
+<% if @mcast6 -%>
+# mcast configuration for IPv6
+  mcast <%= @mcast6['dev'] -%> <%=@mcast6['peer_ip']-%> <%=@mcast6['udp_port'] -%> <%= @mcast6['ttl']%> 0
+<% end -%>
+<% if @udpport -%>
+  udpport <%= @udpport %>
+<% end -%>
+
+<% if @keepalive -%>
+  keepalive <%= @keepalive %>
+<% end -%>
+<% if @warntime -%>
+  warntime <%= @warntime %>
+<% end -%>
+<% if @deadtime -%>
+  deadtime <%= @deadtime %>
+<% end -%>
+<% if @initdead -%>
+  initdead <%= @initdead %>
+<% end -%>
+<% if @ping -%>
+  ping <%= @ping %>
+<% end -%>
+<% if @coredumps -%>
+  coredumps <%= @coredumps %>
+<% end -%>
+# Logging
+<% if @use_logd -%>
+  use_logd <%= @use_logd %>
+<% end -%>
+<% if @logfacility -%>
+  logfacility <%= @logfacility %>
+<% end -%>
+<% if @logfile -%>
+  logfile <%= @logfile %>
+<% end -%>
+<% if @debug -%>
+  debug <%= @debug %>
+<% else -%>
+#  debug 5
+<% end -%>
+<% if @debugfile -%>
+  debugfile <%= @debugfile %>
+<% else -%>
+#  debugfile /var/log/heartbeat.debug
+<% end -%>
+

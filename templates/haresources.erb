@@ -1,0 +1,11 @@
+#  This file is being handled by puppet
+# 
+#  Every manual modification might be undone in the next puppet run
+<% if defined? @haresource -%>
+<% @haresource.each do |node, comment| -%>
+<%= node -%> \
+  <% comment.each_with_index do |(key, value), index| -%>
+  <%= value['resource'] -%><% if value['value'] -%>::<%= value['value'] -%><% if index < (comment.size - 1 ) -%>  \<% end %><% else %> \<% end %>
+  <% end -%>
+<% end -%>
+<% end -%>
