@@ -1,5 +1,5 @@
 #  This file is being handled by puppet
-#
+# 
 #  Every manual modification might be undone in the next puppet run
 <% if defined? @haresource -%>
 <% @haresource.each do |node, array| -%>
@@ -8,6 +8,6 @@
     <%- value.each do | k,v | -%>
   <%= k %><%- if v -%>::<%= v -%><% if index < (array.size - 1 ) -%>  \<%- end -%><% end %>
     <%- end -%>
-  <%- end -%>
+  <%- end -%>  
 <% end -%>
 <% end -%>
